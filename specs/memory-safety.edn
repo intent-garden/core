@@ -1,0 +1,9 @@
+;; Описание правила "Безопасный указатель в C"
+{:intent :safe-pointer-lifecycle
+ :rules [
+   {:match :call :name "free"}
+   {:ensure-next :assignment :value "NULL"}
+   {:forbid-after :read-access}
+ ]
+ :tags ["[[garden:free]]"]}
+ 

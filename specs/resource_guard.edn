@@ -1,0 +1,12 @@
+{:intent :resource-guard
+ :entities {:ptr {:type "void*" :role :managed-handle}}
+ :invariants [
+   ;; Правило: после free указатель ОБЯЗАН стать NULL
+   {:op :call :fn "free" :args [:ptr]
+    :must-follow {:op :assign :target :ptr :value "NULL"}}
+   
+   ;; Правило: запрет на чтение после освобождения
+   {:op :access :target :ptr :mode :read
+    :forbidden-after {:op :call :fn "free"}}]
+ :tags {:wrap "// [[garden:scoped]]"}}
+ 

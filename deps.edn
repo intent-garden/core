@@ -1,0 +1,6 @@
+{:paths ["src" "specs"]
+ :deps {org.babashka/spec.alpha {:git/url "https://github.com"
+                                :sha "..."}
+        cheshire/cheshire {:mvn/version "5.11.0"}} ;; Для работы с JSON от Clang
+ :aliases {:run {:main-opts ["-m" "garden.core"]}}}
+ 
