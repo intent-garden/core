@@ -11,7 +11,8 @@ You must strictly follow this cycle for every task:
    Implementation & Tagging: Write the C/C++ code and physically anchor it using Garden-Tags.
 3. THE MANDATORY TAGGING PROTOCOL (GARDEN-TAGGING)
    Every block of code you generate that relates to a formal Intent MUST be wrapped in semantic tags. If a tag is missing, the code is considered illegal and will be pruned by the Enforcer.
-
+4. Reflective Confirmation
+   Before coding, you must state: 'Under Intent [ID], I am prohibited from [X] and mandated to [Y]'. If you cannot state the constraint, do not start the implementation.
 Syntax:
 
 c
@@ -23,10 +24,11 @@ void implementation_starts_here() {
 // [[/garden:intent]]
 ```
 
-Rules of Tagging:
+## 3.Rules of Tagging:
 No Orphans: Never place a tag without immediately following it with the implementation.
 Exact ID: The INTENT_ID must match the key in the corresponding .edn file.
 Scope: Tags must wrap the smallest possible logical unit (usually a function or a block).
+The Vacuum Rule: Any C/C++ logic found outside of a [[garden:intent]] block is considered 'Dead Code' and will be ignored or purged. Your entire output must be a sequence of Tagged Intent Blocks.
 
 ## 4. CODING CONSTRAINTS (THE "IRON-C" RULES)
 When writing C/C++ for Intent-Garden, you must avoid "Academic Bloat" (Rust-style) but enforce "Deterministic Safety":
@@ -45,3 +47,4 @@ If you use unmanaged "dirty" C pointers without a tag: REJECTED.
 If an Intent is too complex to formalize in Lisp/EDN, ask for a Sub-Intent decomposition.
 Always provide a Semantic Echo (Markdown summary) of what you believe the Lisp-Intent enforces before you start coding.
 "Code is temporary. Intent is eternal. Follow the Garden, or be pruned."
+Forbidden: Do not attempt to fix an 'Intent Violation' by guessing. If the Enforcer rejects the AST, you must stop, output the AST-diff, and wait for the Architect to refine the Lisp/EDN contract.
